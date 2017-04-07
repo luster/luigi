@@ -548,6 +548,21 @@ class DateSecondParameter(_DatetimeParameterBase):
     _timedelta = datetime.timedelta(seconds=1)
 
 
+class DateSecondWithTimezoneParameter(_DatetimeParameterBase):
+    """
+    Parameter whose value is a :py:class:`~datetime.datetime` specified to the second with timezone.
+
+    A DateSecondWithTimezoneParameter is a `ISO 8601 <http://en.wikipedia.org/wiki/ISO_8601>`_ formatted
+    date and time specified to the second. For example, ``2013-07-10T190738Z`` specifies July 10, 2013 at
+    19:07:38 UTC.
+
+    The interval parameter can be used to clamp this parameter to every N seconds, instead of every second.
+    """
+
+    date_format = '%Y-%m-%dT%H%M%SZ'
+    _timedelta = datetime.timedelta(seconds=1)
+
+
 class IntParameter(Parameter):
     """
     Parameter whose value is an ``int``.

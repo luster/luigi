@@ -570,6 +570,11 @@ class TestParamWithDefaultFromConfig(LuigiTestCase):
         p = luigi.DateSecondParameter(config_path=dict(section="foo", name="bar"))
         self.assertEqual(datetime.datetime(2001, 2, 3, 4, 5, 6), _value(p))
 
+    @with_config({"foo": {"bar": "2001-02-03T040506Z"}})
+    def testDateSecondWithTimezone(self):
+        p = luigi.DateSecondWithTimezoneParameter(config_path=dict(section="foo", name="bar"))
+        self.assertEqual(datetime.datetime(2001, 2, 3, 4, 5, 6), _value(p))
+
     @with_config({"foo": {"bar": "2001-02-03T040507"}})
     def testDateSecondWithInterval(self):
         p = luigi.DateSecondParameter(config_path=dict(section="foo", name="bar"), interval=2)
